@@ -1,19 +1,31 @@
 <?php
 
-    $number = 120;
+    echo numbersParity(10); 
+    echo numbersParity(11); 
 
-    //es un numero
-    if (is_numeric($number) && filter_var($number, FILTER_VALIDATE_INT) !== false) {
-        echo "es un numero " . PHP_EOL;
+    function numbersParity (int $number) : string {
+        if (is_numeric($number) && filter_var($number, FILTER_VALIDATE_INT) !== false) {
+            $result = "";
+            if($number % 2 == 0 ){
+                for ($i = $number; $i >= 0 ; $i -= 2) { 
+                    $result .= $i . PHP_EOL;
+                };
+            } else {
+                for ($i=$number; $i >= 1; $i -= 2) { 
+                    $result .= $i . PHP_EOL;
+                };
+            } 
+            return $result;
+        } else {
+            return "No ha introducido un número entero";
+        } 
     }
+   
     
-    //para saber si es par
-    if($number % 2 === 0 ){
-        echo "es par". PHP_EOL;
-    } else {
-        echo "no es par" . PHP_EOL;
-    } 
 
+   
+    
+    
 
 
 
