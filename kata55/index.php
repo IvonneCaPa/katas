@@ -1,7 +1,7 @@
 <?php
 
-    echo numbersParity(10); 
-    echo numbersParity(11); 
+    $number = readline("Introduce un número: ");
+    echo numbersParity($number); 
 
     function numbersParity (int $number) : string {
         if (is_numeric($number) && filter_var($number, FILTER_VALIDATE_INT) !== false) {
