@@ -1,47 +1,28 @@
 <?php
 
-    $characters = [
-        [
-            'name' => 'Barret',
-            'currentLife' => 572,
-            'currentMagic' => 130,
-            'magicMax' => 409,
-            'actions' => ['Fight', 'Magic', 'Item']
-        ],
-        [
-            'name' => 'Aeris',
-            'currentLife' => 409,
-            'currentMagic' => 121,
-            'magicMax' => 516,
-            'actions' => ['Fight', 'Magic', 'Item']
-        ],
-        [
-            'name' => 'Cloud',
-            'currentLife' => 516,
-            'currentMagic' => 57,
-            'magicMax' => 516,
-            'actions' => ['Fight', 'Magic', 'Item']
-        ]
-    ];
+    require_once 'Character.php';
 
-// personaje con menos vida
-function getCharacterWithLeastLife($characters) {
-    $characterWithLessLife = $characters[0];
-    foreach ($characters as $character) {
-        if ($character['currentLife'] < $characterWithLessLife['currentLife']) {
-            $characterWithLessLife = $character;
+    $barret = new Character('Barret', 572, 409, 100, ['Fight', 'Magic', 'Item']);
+    $aeris = new Character('Aeris', 409, 516, 220, ['Fight', 'Magic', 'Item']);
+    $cloud = new Character('Cloud', 516, 516, 25, ['Fight', 'Magic', 'Item']);
+
+    $characters = [$barret, $aeris, $cloud];
+
+    function getCharacterWithLessLife($characters){
+        
+        $characterWithLessLife = $characters[0];
+
+        foreach ($characters as $character) {
+            if($character->getCurrentLife() < $characterWithLessLife->getCurrentLife()){
+                $characterWithLessLife = $character;    
+            }
         }
+
+        return $characterWithLessLife;
     }
-    return $characterWithLessLife;
-}
 
-// cuando hay accion
-function useOrder($personaje, $pedido) {
-    echo "{$personaje['name']} ha usado el pedido '{$pedido}'.\n";
-}
+    $characterWithLessLife = getCharacterWithLessLife($characters);
+    echo "El personaje con menos vida es: " . $characterWithLessLife->getNamme() . PHP_EOL;
 
-// Ejemplo de uso
-$characterWithLessLife = getCharacterWithLeastLife($characters);
-echo "El personaje con menos vida es: {$characterWithLessLife['name']}\n";
 
-useOrder($characters[0], 'Atacar');
+    $barret->useAction('Atacar');
