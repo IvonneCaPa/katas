@@ -4,9 +4,8 @@
     $found = false;
 
     while (!false) {
-        echo "Introduce una palabra ";
+        echo "Introduce una palabra:" . PHP_EOL;
         $word = trim(fgets(STDIN));
-        //echo $word;
         $points = calculateWordPoints($word);
     
         if($points === 100){
@@ -14,7 +13,7 @@
             echo "Felicidades!!!  La palabra $word tiene 100 puntos" . PHP_EOL; 
             exit("programa terminado")  . PHP_EOL; 
         } else {
-            echo "Vuelve a introducir una palabra" . PHP_EOL;
+            echo "La palabra $word tiene $points puntos\n" . PHP_EOL;
         }
     }
 
@@ -28,9 +27,6 @@
         $letterValue = 0;
 
         $wordArray = str_split(strtolower($word), 1);
-        
-        // valor de una letra
-        //$valorLetra = isset($valores[$letra]) ? $valores[$letra] : 0;
         
         foreach($wordArray as $letter){
             $letterValue = isset($values[$letter]) ? $values[$letter] : 0;
